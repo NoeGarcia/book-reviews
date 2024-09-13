@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Reviews</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main>
+        <h1><img src="/images/Dark-Edit-Pen-Write-Paper--Streamline-Freehand.png" alt=""> Book Reviews</h1>
+        
+        <form action="/" method="GET" class="sort-form">
+            <label for="sort">Sort by:</label>
+            <select name="sort" id="sort" onchange="this.form.submit()">
+                <option value="title" <%= sort === 'title' ? 'selected' : '' %>>Title</option>
+                <option value="rating" <%= sort === 'rating' ? 'selected' : '' %>>Rating</option>
+                <option value="recency" <%= sort === 'recency' ? 'selected' : '' %>>Recency</option>
+            </select>
+        </form>
+
+        <div class="book-list">
+            <% books.forEach(book => { %>
+                <div class="book-item">
+                    <img src="<%= book.cover_url %>" alt="<%= book.title %>" class="book-cover">
+                    <div class="book-details">
+                        <h2><%= book.title %></h2>
+                        <p><strong>Author:</strong> <%= book.author %></p>
+                        <p><strong>Rating:</strong> 
+                            <% for (let i = 1; i <= 5; i++) { %>
+                                <span class="star <%= i <= book.rating ? 'filled' : '' %>">★</span>
+                            <% } %>
+                        </p>
+                        <a href="/books/<%= book.id %>" class="view-details">View Details</a>
+                        <div class="book-actions">                        
+                            <a href="/books/<%= book.id %>/edit" class="edit-button">Edit</a>
+                            <form action="/books/<%= book.id %>?_method=DELETE" method="POST" class="delete-form">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="delete-button">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

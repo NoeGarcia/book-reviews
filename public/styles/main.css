@@ -1,0 +1,324 @@
+/*#region GeneralStyles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F7F8F3; /* Updated to the new color palette */
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+header, footer {
+    background-color: #002C3E; /* Dark blue for header/footer */
+    color: #F7F8F3; /* Light background for text */
+    padding: 10px;
+    text-align: center;
+}
+
+.sort-form, .add-book-form, .add-review-form {
+    margin: 20px 0;
+}
+
+/*#endregion GeneralStyles */
+
+/*#region HeaderStyles */
+
+/* Flex container for navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the nav-center content */
+    padding: 10px;
+    background-color: #002C3E; /* Adjust as needed */
+    position: relative;
+}
+
+/* Flex container for nav-left and nav-center */
+.navbar-content {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+/* Flex container for nav-left and nav-center */
+.navbar > div {
+    display: flex;
+    align-items: center;
+}
+
+/* Flex container for the leftmost icon */
+.nav-left {
+    flex-shrink: 0; /* Prevents shrinking */
+}
+
+/* Flex container for navigation links */
+.nav-center {
+    flex: 1; /* Allows centering */
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Space between links */
+}
+
+/* Styling for icon */
+.nav-icon {
+    font-size: 1.5em; /* Adjust size as needed */
+    color: #F7F8F3; /* Adjust color as needed */
+    text-decoration: none;
+}
+
+.navbar a {
+    color: #F7F8F3; /* Light text color for nav links */
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+/*#endregion HeaderStyles */
+
+/*#region IndexStyles */
+main {
+    padding: 20px;
+}
+
+.sort-form label {
+    margin-right: 10px;
+}
+
+.sort-form select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.book-list, .reviews {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 15px;
+}
+
+.book-cover {
+    width: 150px; 
+    height: 200px;
+    object-fit: cover; 
+    margin: 0 auto; 
+    overflow: hidden;
+}
+
+.book-item {
+    border: 1px solid #ddd; /* Light border around each book item */
+    padding: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.book-item:hover {
+    border-color: #78BCC4; /* Use secondary color for border on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.book-item img {
+    margin-bottom: 10px;
+}
+
+.book-item h2 {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.book-details p {
+    margin: 0px;
+}
+
+.book-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.book-actions form {
+    margin: 0;
+}
+
+.edit-button, .delete-button {
+    background-color: white;
+    color: #333;
+    border: 2px solid;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    line-height: 1;
+}
+
+.edit-button {
+    border-color: #78BCC4; /* Secondary color for edit button border */
+    color: #78BCC4; /* Secondary color for edit button text */
+    height: 16px;
+}
+
+.edit-button:hover {
+    background-color: #78BCC4; /* Secondary color background on hover */
+    color: white; /* White text on hover */
+}
+
+.delete-button {
+    background-color: white;
+    color: #F7444E; /* Primary color for delete button text */
+    border: 2px solid #F7444E; /* Primary color for delete button border */
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #F7444E; /* Primary color background on hover */
+    color: white; /* White text on hover */
+}
+
+.star {
+    font-size: 1.5em;
+    color: #aedde2; /* Light star color */
+    margin-right: 2px;
+}
+
+.star.filled {
+    color: #F7444E; /* Use primary color for filled stars */
+}
+
+/*#endregion IndexStyles */
+
+/*#region AddBookStyles & EditBookStyles */
+.add-book-form{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 2fr;
+}
+
+.form-review{
+    grid-column: span 2;
+    grid-column-start: 1;
+    grid-column-end: 3;    
+}
+
+.cover-column{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-details img {
+    max-width: 300px;
+    max-height: 400px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #78BCC4; /* Light blue border */
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    border-color: #F7444E; /* Red border on focus */
+    outline: none;
+}
+
+.submit-button {
+    background-color: #002C3E; /* Dark blue background */
+    color: #F7F8F3; /* Light text color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #78BCC4; /* Light blue background on hover */
+    color: #002C3E; /* Dark text color on hover */
+}
+
+.cover-container {
+    width: 150px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 5px;
+}
+
+#coverImage {
+    max-width: 150px;
+    max-height: 200px;
+    width: 100%;
+    height: 190px;
+    border: 1px solid #78BCC4; /* Light blue border */
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.stars {
+    display: flex;
+    direction: rtl;
+    width: 100px;
+}
+
+.stars input {
+    display: none;
+}
+
+.stars label {
+    color: #aedde2; /* Light star color */
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.stars input:checked ~ label {
+    color: #F7444E; /* Red color for selected stars */
+}
+
+.stars input:checked ~ label ~ label {
+    color: #F7444E; /* Red color for selected stars */
+}
+
+.stars input:checked ~ input ~ label {
+    color: #F7444E; /* Red color for selected stars */
+}
+
+.stars input:not(:checked) ~ label:hover,
+.stars input:not(:checked) ~ label:hover ~ label {
+    color: #F7444E; /* Red color for selected stars */
+}
+
+.review-input {
+    width: 100%;
+}
+
+/*#endregion AddBookStyles & EditBookStyles */
+

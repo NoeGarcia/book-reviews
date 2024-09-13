@@ -1,0 +1,37 @@
+<header>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <!-- Container for the FontAwesome Icon -->
+            <div class="nav-left">
+                <a href="/" class="nav-icon">
+                    <!-- <i class="fa-solid fa-book-open-reader"></i> -->
+                    <img src="/images/Clear-Edit-Pen-Write-Paper--Streamline-Freehand.png" alt="">
+                </a>
+            </div>
+
+            <!-- Container for Navigation Links -->
+            <div class="nav-center">
+                <a href="/">Home</a>
+                <!-- Add more navigation links if needed -->
+                <% if (locals.currentPage) { %> 
+                    <% if (currentPage.toLowerCase() === 'home') { %>
+                        <a href="/books/new">Add New Book</a>         
+                    <% } %>
+                    <% if (currentPage.toLowerCase() === 'book') { %>
+                        <a href="/books/<%= book.id %>/edit">Edit Book</a>
+                        <a href="#" class="delete-link" data-id="<%= book.id %>">Delete Book</a>
+                    <% } %>
+                    <% if (currentPage.toLowerCase() === 'editbook') { %>
+                        <a href="/books/<%= book.id %>">Back to Book Details</a>
+                    <% } %>
+                    
+                <% } %>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Hidden form for delete request -->
+<form id="delete-form" action="" method="POST" style="display:none;">
+    <input type="hidden" name="_method" value="DELETE">
+</form>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= book.title %> - Details</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <script src="/delete.js" defer></script>
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main class="book-details">
+        <h1><%= book.title %></h1>
+        <img src="<%= book.cover_url %>" alt="<%= book.title %>" class="book-cover">
+        <p><strong>Author:</strong> <%= book.author %></p>
+
+        <h2>Review</h2>
+        <div class="reviews">
+            <% reviews.forEach(review => { %>
+                <div class="review">
+                    <p><%= review.review_text %></p>
+                    <p><strong>Rating:</strong> 
+                    <% for (let i = 1; i <= 5; i++) { %>
+                        <span class="star <%= i <= review.rating ? 'filled' : '' %>">★</span>
+                    <% } %>
+
+                </div>
+            <% }) %>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>
