@@ -40,8 +40,6 @@ app.set('views', path.join(__dirname, 'views'));
 
 // GET all books with their reviews
 app.get('/', async (req, res) => {
-    console.log(process.env.DB_HOST);
-
     const sort = req.query.sort || 'title';
 
     let sortQuery = 'ORDER BY title ASC';
