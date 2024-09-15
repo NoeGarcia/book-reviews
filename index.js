@@ -1,3 +1,8 @@
+// Import dotenv and load environment variables
+import dotenv from "dotenv";
+dotenv.config();
+
+// Import other modules
 import express from 'express';
 import bodyParser from 'body-parser';
 import axios from 'axios';
@@ -6,16 +11,21 @@ import path from 'path';
 import { __dirname } from './utils.js'; // Import the utility
 import methodOverride from 'method-override';   // To process POST calls and route them to PUT or DELETE routes if necesary.
 
+// Initialize Express app
 const app = express();
 const port = 3000;
 
-// PostgreSQL client setup
-const pool = new pg.Pool({
-    user: "postgres",
-    host: "localhost",
-    database: "book_reviews",
-    password: "123QWE",
-    port: 5432,
+// Set DB connection configuration
+const pool =  new pg.Pool({
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    database: process.env.DB_NAME,
+    ssl: {
+        rejectUnauthorized: true,
+        ca: process.env.DB_SSL_CERT,
+    },
 });
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -30,6 +40,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 // GET all books with their reviews
 app.get('/', async (req, res) => {
+    console.log(process.env.DB_HOST);
+
     const sort = req.query.sort || 'title';
 
     let sortQuery = 'ORDER BY title ASC';

@@ -1,0 +1,17 @@
+CREATE TABLE books
+(
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    cover_url text,
+    created_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE reviews
+(
+    id SERIAL PRIMARY KEY,
+    book_id integer REFERENCES books(id),
+    review_text text NOT NULL,
+    rating integer,
+    CONSTRAINT reviews_rating_check CHECK (rating >= 1 AND rating <= 5)
+);
