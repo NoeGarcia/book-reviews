@@ -41,12 +41,17 @@ app.set('views', path.join(__dirname, 'views'));
 // GET all books with their reviews
 app.get('/', async (req, res) => {
     const sort = req.query.sort || 'title';
+    const search = req.query.search ? `%${req.query.search}%` : '%';
+    const page = parseInt(req.query.page, 12) || 1; // Default to page 1 if not provided
+    const pageSize = 12; // Number of books per page
+
+    const offset = (page - 1) * pageSize; // Calculate the offset for pagination
 
     let sortQuery = 'ORDER BY title ASC';
     if (sort === 'rating') {
         sortQuery = 'ORDER BY rating DESC';
     } else if (sort === 'recency') {
-        sortQuery = 'ORDER BY created_at DESC'; // Assuming you have a created_at column
+        sortQuery = 'ORDER BY created_at DESC';
     }
 
     try {
@@ -54,11 +59,29 @@ app.get('/', async (req, res) => {
             SELECT books.id, books.title, books.author, books.cover_url, reviews.rating, books.deletable 
             FROM books
             LEFT JOIN reviews ON books.id = reviews.book_id
+            WHERE books.title ILIKE $1 OR books.author ILIKE $1
             ${sortQuery}
-        `);
-        const books = booksResult.rows;
+            LIMIT $2 OFFSET $3
+        `, [search, pageSize, offset]);
 
-        res.render('index', { books, sort, currentPage: 'home' });
+        // Fetch total number of books for pagination
+        const countResult = await pool.query(`
+            SELECT COUNT(*) AS total
+            FROM books
+            WHERE title ILIKE $1 OR author ILIKE $1
+        `, [search]);
+
+        const books = booksResult.rows;
+        const totalBooks = parseInt(countResult.rows[0].total, 10);
+        const totalPages = Math.ceil(totalBooks / pageSize);
+
+        res.render('index', { 
+            books, 
+            sort, 
+            search: req.query.search || '', 
+            currentPage: page,
+            totalPages
+         });
     } catch (err) {
         console.error(err);
         res.status(500).send('Server error');

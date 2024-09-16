@@ -4,9 +4,12 @@
             <!-- Container for the FontAwesome Icon -->
             <div class="nav-left">
                 <a href="/" class="nav-icon">
-                    <!-- <i class="fa-solid fa-book-open-reader"></i> -->
                     <img src="/images/Clear-Edit-Pen-Write-Paper--Streamline-Freehand.png" alt="">
                 </a>
+            </div>
+
+            <div class="nav-title">
+                <h1>Book Reviews</h1>
             </div>
 
             <!-- Container for Navigation Links -->
@@ -14,10 +17,10 @@
                 <a href="/">Home</a>
                 <!-- Add more navigation links if needed -->
                 <% if (locals.currentPage) { %> 
-                    <% if (currentPage.toLowerCase() === 'home') { %>
+                    <% if (currentPage.toString().toLowerCase() !== 'book' && currentPage.toString().toLowerCase() !== 'editbook') { %>
                         <a href="/books/new">Add New Book</a>         
                     <% } %>
-                    <% if (currentPage.toLowerCase() === 'book') { %>
+                    <% if (currentPage.toString().toLowerCase() === 'book') { %>
                         <a href="/books/<%= book.id %>/edit">Edit Book</a>
                         <% if (locals.book) { %>
                             <% if (book.deletable) { %>
@@ -25,7 +28,7 @@
                             <% } %>                         
                         <% } %>
                     <% } %>
-                    <% if (currentPage.toLowerCase() === 'editbook') { %>
+                    <% if (currentPage.toString().toLowerCase() === 'editbook') { %>
                         <a href="/books/<%= book.id %>">Back to Book Details</a>
                     <% } %>
                     

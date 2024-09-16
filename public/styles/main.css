@@ -50,6 +50,19 @@ header, footer {
     flex-shrink: 0; /* Prevents shrinking */
 }
 
+/* Flex container for the leftmost icon */
+.nav-title {
+    flex-shrink: 0; /* Prevents shrinking */
+    margin: 0px;
+    padding: 0px;
+}
+
+.nav-title h1 {
+    font-size: 2em;
+    margin: 0px;
+    padding: 0px;
+}
+
 /* Flex container for navigation links */
 .nav-center {
     flex: 1; /* Allows centering */
@@ -148,9 +161,6 @@ main {
 .book-details p {
     margin: 0;
     word-wrap: break-word;
-    /* overflow: hidden; 
-    text-overflow: ellipsis;
-    white-space: nowrap;  */
 }
 
 .book-details > .book-author {
@@ -369,4 +379,83 @@ main {
 }
 
 /*#endregion AddBookStyles & EditBookStyles */
+
+/*#region SearchSortFormStyles */
+.search-sort-form {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-sort-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.search-sort-container label {
+    margin-right: 10px;
+}
+
+.search-sort-container select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.search-sort-container input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    flex: 1; /* Takes up available space */
+}
+
+.search-sort-container button {
+    background-color: #002C3E; /* Dark blue background */
+    color: #F7F8F3; /* Light text color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.search-sort-container button:hover {
+    background-color: #78BCC4; /* Light blue background on hover */
+    color: #002C3E; /* Dark text color on hover */
+}
+
+/*#endregion SearchSortFormStyles */
+
+/*#region PaginationStyles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.page-link {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #002C3E;
+    text-decoration: none;
+}
+
+.page-link.active {
+    background-color: #002C3E;
+    color: #F7F8F3;
+    border-color: #002C3E;
+}
+
+.page-link:hover {
+    background-color: #78BCC4;
+    color: #002C3E;
+}
+/*#endregion PaginationStyles */
+
 

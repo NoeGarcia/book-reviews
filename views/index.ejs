@@ -11,15 +11,21 @@
     <%- include('partials/header') %>
 
     <main>
-        <h1><img src="/images/Dark-Edit-Pen-Write-Paper--Streamline-Freehand.png" alt=""> Book Reviews</h1>
+        <!-- <h1><img src="/images/Dark-Edit-Pen-Write-Paper--Streamline-Freehand.png" alt=""> Book Reviews</h1> -->
         
-        <form action="/" method="GET" class="sort-form">
-            <label for="sort">Sort by:</label>
-            <select name="sort" id="sort" onchange="this.form.submit()">
-                <option value="title" <%= sort === 'title' ? 'selected' : '' %>>Title</option>
-                <option value="rating" <%= sort === 'rating' ? 'selected' : '' %>>Rating</option>
-                <option value="recency" <%= sort === 'recency' ? 'selected' : '' %>>Recency</option>
-            </select>
+        <form action="/" method="GET" class="search-sort-form">
+            <div class="search-sort-container">
+                <label for="sort">Sort by:</label>
+                <select name="sort" id="sort" onchange="this.form.submit()">
+                    <option value="title" <%= sort === 'title' ? 'selected' : '' %>>Title</option>
+                    <option value="rating" <%= sort === 'rating' ? 'selected' : '' %>>Rating</option>
+                    <option value="recency" <%= sort === 'recency' ? 'selected' : '' %>>Recency</option>
+                </select>
+
+                <label for="search">Search:</label>
+                <input type="text" name="search" id="search" placeholder="Search for books or authors..." value="<%= search || '' %>">
+                <button type="submit">Apply</button>
+            </div>
         </form>
 
         <div class="book-list">
@@ -47,6 +53,19 @@
                     </div>
                 </div>
             <% }) %>
+        </div>
+        <div class="pagination">
+            <% if (currentPage > 1) { %>
+                <a href="/?sort=<%= sort %>&search=<%= search %>&page=<%= currentPage - 1 %>" class="page-link">Previous</a>
+            <% } %>
+        
+            <% for (let i = 1; i <= totalPages; i++) { %>
+                <a href="/?sort=<%= sort %>&search=<%= search %>&page=<%= i %>" class="page-link <%= i === currentPage ? 'active' : '' %>"><%= i %></a>
+            <% } %>
+        
+            <% if (currentPage < totalPages) { %>
+                <a href="/?sort=<%= sort %>&search=<%= search %>&page=<%= currentPage + 1 %>" class="page-link">Next</a>
+            <% } %>
         </div>
     </main>
 
