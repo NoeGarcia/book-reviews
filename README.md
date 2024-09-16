@@ -52,7 +52,7 @@ To get the site up and running on your local machine, follow these steps:
 	`Navigate to 'http://localhost:3000' to view the app.`
 	
 ## Online demo
-You can see a ***[live demo](https://book-reviews-lz71.onrender.com)*** powered by Render.com
+You can see a ***[live demo](https://book-reviews-3eq7.onrender.com)*** powered by Render.com
 
 ## Motivation for this project
 The reason for developing this project is to complete the capstone project of the section on learning how to use postgreSQL as a repository that is part of the course "The Complete 2024 Web Development Bootcamp" available on Udemy.
