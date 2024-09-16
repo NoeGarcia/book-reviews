@@ -27,8 +27,8 @@
                 <div class="book-item">
                     <img src="<%= book.cover_url %>" alt="<%= book.title %>" class="book-cover">
                     <div class="book-details">
-                        <h2><%= book.title %></h2>
-                        <p><strong>Author:</strong> <%= book.author %></p>
+                        <h2 title="<%= book.title %>"><%= book.title %></h2>
+                        <p class="book-author"><strong>Author:</strong> <%= book.author %></p>
                         <p><strong>Rating:</strong> 
                             <% for (let i = 1; i <= 5; i++) { %>
                                 <span class="star <%= i <= book.rating ? 'filled' : '' %>">★</span>
@@ -37,10 +37,12 @@
                         <a href="/books/<%= book.id %>" class="view-details">View Details</a>
                         <div class="book-actions">                        
                             <a href="/books/<%= book.id %>/edit" class="edit-button">Edit</a>
-                            <form action="/books/<%= book.id %>?_method=DELETE" method="POST" class="delete-form">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="delete-button">Delete</button>
-                            </form>
+                            <% if (book.deletable) { %>
+                                <form action="/books/<%= book.id %>?_method=DELETE" method="POST" class="delete-form">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="delete-button">Delete</button>
+                                </form>                                 
+                            <% } %>
                         </div>
                     </div>
                 </div>

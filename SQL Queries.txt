@@ -4,7 +4,8 @@ CREATE TABLE books
     title VARCHAR(255) NOT NULL,
     author VARCHAR(255) NOT NULL,
     cover_url text,
-    created_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP
+    created_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
+    deletable BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE reviews

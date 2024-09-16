@@ -22,10 +22,10 @@ const pool =  new pg.Pool({
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     database: process.env.DB_NAME,
-    ssl: {
-        rejectUnauthorized: true,
-        ca: process.env.DB_SSL_CERT,
-    },
+    // ssl: {
+    //     rejectUnauthorized: true,
+    //     ca: process.env.DB_SSL_CERT,
+    // },
 });
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -51,7 +51,7 @@ app.get('/', async (req, res) => {
 
     try {
         const booksResult = await pool.query(`
-            SELECT books.id, books.title, books.author, books.cover_url, reviews.rating
+            SELECT books.id, books.title, books.author, books.cover_url, reviews.rating, books.deletable 
             FROM books
             LEFT JOIN reviews ON books.id = reviews.book_id
             ${sortQuery}

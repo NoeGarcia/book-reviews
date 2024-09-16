@@ -91,6 +91,12 @@ main {
     border-radius: 4px;
 }
 
+#sort:hover {
+    padding: 10px;
+    border: 1px solid #78BCC4;
+    border-radius: 4px;
+}
+
 .book-list, .reviews {
     display: flex;
     flex-wrap: wrap;
@@ -106,7 +112,7 @@ main {
 }
 
 .book-item {
-    border: 1px solid #ddd; /* Light border around each book item */
+    border: 1px solid #ddd;
     padding: 10px;
     margin-bottom: 20px;
     text-align: center;
@@ -114,24 +120,44 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     transition: border-color 0.3s, box-shadow 0.3s;
+    width: 250px; 
+    height:405px; 
+    overflow: hidden;
 }
 
 .book-item:hover {
-    border-color: #78BCC4; /* Use secondary color for border on hover */
+    border-color: #78BCC4;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .book-item img {
+    max-width: 100%; 
+    max-height: 50%; 
+    object-fit: cover;
     margin-bottom: 10px;
 }
 
 .book-item h2 {
     font-size: 1.2em;
     margin: 10px 0;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
 }
 
 .book-details p {
-    margin: 0px;
+    margin: 0;
+    word-wrap: break-word;
+    /* overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;  */
+}
+
+.book-details > .book-author {
+    margin: 0;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap; 
 }
 
 .book-actions {
@@ -194,6 +220,28 @@ main {
 
 .star.filled {
     color: #F7444E; /* Use primary color for filled stars */
+}
+
+@media (max-width: 768px) {
+    .book-list{
+        justify-content: center; /* Center items horizontally */
+    }
+
+    .book-item {
+        width: 200px; /* Adjust width for smaller screens */
+        height: 300px; /* Adjust height for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .book-list{
+        justify-content: center; /* Center items horizontally */
+    }
+
+    .book-item {
+        width: 200px; /* Further adjust width for very small screens */
+        height: 300px; /* Further adjust height for very small screens */
+    }
 }
 
 /*#endregion IndexStyles */
