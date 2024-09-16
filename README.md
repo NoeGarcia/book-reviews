@@ -1,4 +1,4 @@
-[![Header](https://github.com/NoeGarcia/book-reviews/blob/main/public/gitHeader.png?raw=true)](https://github.com/NoeGarcia/book-reviews/)
+[![Header](https://github.com/NoeGarcia/book-reviews/blob/main/public/images/gitHeader.png?raw=true)](https://github.com/NoeGarcia/book-reviews/)
 # Book reviews (book-reviews)
 ***
 The **book-reviews** website is designed to display a list of books reviews and of course add new reviews, edit them or delete them.
@@ -9,7 +9,7 @@ In addition, the site provides a search engine to facilitate the location of a s
 Built with Node.js, Express.js, EJS and with the help of some Javascript, it uses the [openlibrary.org ISBN API ](https://openlibrary.org/dev/docs/api/books) to get the book covers. The openlibrary.org has several book's search APIs and all of them are public and can be accessed without authentication.  
 
 Here's how the site looks like:  
-![Book-reviews site sample](https://github.com/NoeGarcia/book-reviews/blob/main/public/gitDetailsPage.png?raw=true)
+![Book-reviews site sample](https://github.com/NoeGarcia/book-reviews/blob/main/public/images/gitDetailsPage.png?raw=true)
 
 ## How to clone and build it
 To get the site up and running on your local machine, follow these steps: 
