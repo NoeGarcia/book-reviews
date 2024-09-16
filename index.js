@@ -22,10 +22,10 @@ const pool =  new pg.Pool({
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     database: process.env.DB_NAME,
-    // ssl: {
-    //     rejectUnauthorized: true,
-    //     ca: process.env.DB_SSL_CERT,
-    // },
+    ssl: {
+        rejectUnauthorized: true,
+        ca: process.env.DB_SSL_CERT,
+    },
 });
 
 app.use(bodyParser.urlencoded({ extended: true }));
