@@ -38,17 +38,20 @@ To get the site up and running on your local machine, follow these steps:
 	`DB_PASSWORD=ThePasswordYouSetForYourPosgreSQLServer`  
 	`DB_NAME=NameOfTheDatabaseYouCreatedOnStep4`  
 
-7. Comment or erase the lines with the following configuration for the pg.Pool() connection. That part is not needed for local databases:  
+7. Comment or erase the lines with the following configuration for the pg.Pool() connection in the Index,js file. That part is not needed for local databases:  
 	`ssl: {`  
     `    rejectUnauthorized: true,`  
     `    ca: process.env.DB_SSL_CERT,`  
     `},`  
 
-8. Start the server (you can use node or nodemon):  
+8. Add all the express modules required (they are listed in the package.json file) by building the project with:  
+	`npm i`  
+
+9. Start the server (you can use node or nodemon):  
 	`node index.js`  
 	or  
 	`nodemon index.js`
-9. Open your browser:  
+10. Open your browser:  
 	`Navigate to 'http://localhost:3000' to view the app.`
 	
 ## Online demo
