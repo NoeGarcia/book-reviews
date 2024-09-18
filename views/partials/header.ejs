@@ -1,7 +1,6 @@
 <header>
     <nav class="navbar">
         <div class="navbar-content">
-            <!-- Container for the FontAwesome Icon -->
             <div class="nav-left">
                 <a href="/" class="nav-icon">
                     <img src="/images/Clear-Edit-Pen-Write-Paper--Streamline-Freehand.png" alt="">
@@ -12,12 +11,17 @@
                 <h1>Book Reviews</h1>
             </div>
 
+            <!-- Hamburger Menu Icon -->
+            <div class="nav-toggle" id="nav-toggle">
+                &#9776; <!-- This is a simple hamburger icon, you can replace it with an image or FontAwesome icon if you prefer -->
+            </div>
+
             <!-- Container for Navigation Links -->
-            <div class="nav-center">
+            <div class="nav-center" id="nav-links">
                 <a href="/">Home</a>
                 <!-- Add more navigation links if needed -->
                 <% if (locals.currentPage) { %> 
-                    <% if (currentPage.toString().toLowerCase() !== 'book' && currentPage.toString().toLowerCase() !== 'editbook') { %>
+                    <% if (currentPage.toString().toLowerCase() !== 'book' && currentPage.toString().toLowerCase() !== 'editbook' && currentPage.toString().toLowerCase() !== 'addbook') { %>
                         <a href="/books/new">Add New Book</a>         
                     <% } %>
                     <% if (currentPage.toString().toLowerCase() === 'book') { %>
@@ -34,6 +38,16 @@
                     
                 <% } %>
             </div>
+            <!-- Search Form (Visible only on index page) -->
+            <% if (currentPage.toString().toLowerCase() !== 'book' && currentPage.toString().toLowerCase() !== 'editbook' && currentPage.toString().toLowerCase() !== 'addbook') { %>
+                <form action="/" method="GET" class="search-form navbar-search-form">
+                    <div class="search-container">
+                        <label for="search">Search:</label>
+                        <input type="text" name="search" id="search" placeholder="Search for books or authors..." value="<%= search || '' %>">
+                        <button type="submit">Apply</button>
+                    </div>
+                </form>
+            <% } %>
         </div>
     </nav>
 </header>

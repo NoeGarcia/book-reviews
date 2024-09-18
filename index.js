@@ -90,7 +90,7 @@ app.get('/', async (req, res) => {
 
 // Render the form to add a new book
 app.get('/books/new', (req, res) => {
-    res.render('addBook'); // Render addBook.ejs view
+    res.render('addBook', { currentPage: 'addbook' }); // Render addBook.ejs view
 });
 
 app.get('/books/:id', async (req, res) => {

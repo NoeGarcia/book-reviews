@@ -26,17 +26,17 @@ header, footer {
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: center; /* Center the nav-center content */
+    justify-content: space-between;
     padding: 10px;
-    background-color: #002C3E; /* Adjust as needed */
+    background-color: #002C3E;
     position: relative;
 }
 
-/* Flex container for nav-left and nav-center */
 .navbar-content {
     display: flex;
     width: 100%;
     align-items: center;
+    position: relative; /* Allows absolute positioning of .nav-center */
 }
 
 /* Flex container for nav-left and nav-center */
@@ -50,7 +50,7 @@ header, footer {
     flex-shrink: 0; /* Prevents shrinking */
 }
 
-/* Flex container for the leftmost icon */
+/* Flex container for title*/
 .nav-title {
     flex-shrink: 0; /* Prevents shrinking */
     margin: 0px;
@@ -63,12 +63,26 @@ header, footer {
     padding: 0px;
 }
 
+/* Hamburger Menu Icon */
+.nav-toggle {
+    display: none; /* Hide by default */
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #F7F8F3;
+    padding: 10px;
+    margin-left: auto; /* Pushes the hamburger icon to the right */
+}
+
 /* Flex container for navigation links */
 .nav-center {
-    flex: 1; /* Allows centering */
+    /* flex: 1;  */
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 15px; /* Space between links */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
 }
 
 /* Styling for icon */
@@ -87,6 +101,87 @@ header, footer {
 .navbar a:hover {
     text-decoration: underline;
 }
+
+/* Hide nav-center links by default on small screens */
+.nav-center {
+    display: flex;
+}
+
+/* Hide nav-center links by default on small screens */
+.nav-center.hidden {
+    display: none;
+}
+
+/* Show nav-center when active */
+.nav-center.show {
+    display: flex;
+}
+
+/*navbar-search-form relates styles*/
+.navbar-search-form {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Pushes the search form to the right */
+}
+
+.navbar-search-form .search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-search-form label {
+    margin-right: 5px;
+}
+
+.navbar-search-form input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.navbar-search-form button {
+    background-color: #002C3E;
+    color: #F7F8F3;
+    border-color: #78BCC4;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-search-form button:hover {
+    background-color: #78BCC4;
+    color: #002C3E;
+}
+
+@media (max-width: 768px) {
+    .nav-center {
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Adjust based on your header height */
+        right: 0;
+        background-color: #002C3E;
+        width: 100%;
+        display: none; /* Hide by default on small screens */
+        gap: 10px;
+        padding: 10px;
+        margin: 0; /* Remove margin to fit full width */
+        left: 0; /* Align to the left side on small screens */
+        transform: none; /* Remove transform on small screens */        
+    }
+
+    .nav-toggle {
+        display: block; /* Show hamburger icon on small screens */
+    }
+
+    .navbar-search-form {
+        display: none;
+    }
+}
+
+
 /*#endregion HeaderStyles */
 
 /*#region IndexStyles */
@@ -384,14 +479,32 @@ main {
 .search-sort-form {
     margin: 20px 0;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
     gap: 10px;
 }
 
 .search-sort-container {
     display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping */
+    justify-content: space-between; /* Space between left and right groups */
     align-items: center;
-    gap: 15px;
+    /* gap: 10px; */
+    width: 100%;
+}
+
+/* Style for form elements in the left group (Sort by) */
+.search-sort-container .left-group {
+    display: flex;
+    flex-direction: row; /* Align items horizontally */
+    gap: 10px; /* Space between items */
+}
+
+/* Style for form elements in the right group (Search) */
+.search-sort-container .right-group {
+    display: flex;
+    flex-direction: row; /* Align items horizontally */
+    gap: 10px; /* Space between items */
 }
 
 .search-sort-container label {
@@ -408,12 +521,20 @@ main {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    flex: 1; /* Takes up available space */
+    flex: 1;
+}
+
+/* Style for individual form elements */
+.search-sort-container label,
+.search-sort-container select,
+.search-sort-container input[type="text"],
+.search-sort-container button {
+    margin: 0; /* Remove default margin */
 }
 
 .search-sort-container button {
-    background-color: #002C3E; /* Dark blue background */
-    color: #F7F8F3; /* Light text color */
+    background-color: #002C3E;
+    color: #F7F8F3;
     border: none;
     padding: 10px 20px;
     border-radius: 4px;
@@ -425,6 +546,23 @@ main {
 .search-sort-container button:hover {
     background-color: #78BCC4; /* Light blue background on hover */
     color: #002C3E; /* Dark text color on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .search-sort-container {
+        flex-direction: column; /* Stack elements vertically */
+    }
+
+    .search-sort-container .left-group,
+    .search-sort-container .right-group {
+        flex-direction: column; /* Stack items within each group vertically */
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    .search-sort-container .right-group {
+        margin-top: 10px; /* Add margin to separate from left group */
+    }
 }
 
 /*#endregion SearchSortFormStyles */
