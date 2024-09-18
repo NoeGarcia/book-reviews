@@ -9,6 +9,7 @@ import axios from 'axios';
 import pg from 'pg';
 import path from 'path';
 import { __dirname } from './utils.js'; // Import the utility
+import { formatReviewText } from './utils.js'
 import methodOverride from 'method-override';   // To process POST calls and route them to PUT or DELETE routes if necesary.
 
 // Initialize Express app
@@ -35,6 +36,9 @@ app.use(methodOverride('_method'));                         // Middleware to par
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+// Make the function available in all templates
+app.locals.formatReviewText = formatReviewText;
 
 // Routes
 

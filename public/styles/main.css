@@ -500,13 +500,6 @@ main {
     gap: 10px; /* Space between items */
 }
 
-/* Style for form elements in the right group (Search) */
-.search-sort-container .right-group {
-    display: flex;
-    flex-direction: row; /* Align items horizontally */
-    gap: 10px; /* Space between items */
-}
-
 .search-sort-container label {
     margin-right: 10px;
 }
@@ -517,35 +510,10 @@ main {
     border-radius: 4px;
 }
 
-.search-sort-container input[type="text"] {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    flex: 1;
-}
-
 /* Style for individual form elements */
 .search-sort-container label,
-.search-sort-container select,
-.search-sort-container input[type="text"],
-.search-sort-container button {
+.search-sort-container select {
     margin: 0; /* Remove default margin */
-}
-
-.search-sort-container button {
-    background-color: #002C3E;
-    color: #F7F8F3;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.search-sort-container button:hover {
-    background-color: #78BCC4; /* Light blue background on hover */
-    color: #002C3E; /* Dark text color on hover */
 }
 
 /* Responsive adjustments */
@@ -554,14 +522,9 @@ main {
         flex-direction: column; /* Stack elements vertically */
     }
 
-    .search-sort-container .left-group,
-    .search-sort-container .right-group {
+    .search-sort-container .left-group {
         flex-direction: column; /* Stack items within each group vertically */
         width: 100%; /* Full width on smaller screens */
-    }
-
-    .search-sort-container .right-group {
-        margin-top: 10px; /* Add margin to separate from left group */
     }
 }
 

@@ -20,7 +20,7 @@
         <div class="reviews">
             <% reviews.forEach(review => { %>
                 <div class="review">
-                    <p><%= review.review_text %></p>
+                    <p><%- formatReviewText(review.review_text) %></p>
                     <p><strong>Rating:</strong> 
                     <% for (let i = 1; i <= 5; i++) { %>
                         <span class="star <%= i <= review.rating ? 'filled' : '' %>">★</span>
