@@ -38,7 +38,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Make the function available in all templates
-app.locals.formatReviewText = formatReviewText;
+app.locals.formatReviewText = formatReviewText;             // Converts \n into <br>
 
 // Routes
 
